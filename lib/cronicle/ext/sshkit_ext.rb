@@ -118,6 +118,7 @@ class SSHKit::Backend::Netssh
     entry_cat = "cat #{temp_entry} >> #{user_crontab(user)}"
     entry_cat = Shellwords.shellescape(entry_cat)
     sudo(:execute, :bash, '-c', entry_cat)
+    sudo(:execute, :chmod, '600', user_crontab(user))
   end
 
   def upload_script(temp_dir, name, content)
